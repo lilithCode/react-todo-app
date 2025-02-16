@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+import plusIcon from './assets/plus.svg';
+import plusDisabledIcon from './assets/plus(disable).svg';
+import deleteIcon from './assets/delete.svg';
+import editIcon from './assets/edit.svg';
 
 function App() {
   const [todo, setTodo] = useState("");
@@ -62,15 +66,9 @@ function App() {
               }}
             />
             <img
-              src={
-                todo.trim()
-                  ? "./src/assets/plus.svg"
-                  : "./src/assets/plus(disable).svg"
-              }
+              src={todo.trim() ? plusIcon : plusDisabledIcon}
               alt="plus"
-              className={`w-14 h-14 mt-4 ml-2 cursor-pointer transition-opacity duration-300 ease-in-out ${
-                todo.trim() === "" ? "opacity-50 cursor-not-allowed" : ""
-              }`}
+              className={`w-14 h-14 mt-4 ml-2 cursor-pointer transition-opacity duration-300 ease-in-out ${todo.trim() === "" ? "opacity-50 cursor-not-allowed" : ""}`}
               onClick={addTodo}
             />
           </div>
@@ -92,23 +90,19 @@ function App() {
                   onChange={handleCheckbox}
                   data-id={todo.id}
                 />
-                <p
-                  className={`w-4/5 break-words min-w-0 ${
-                    todo.isCompleted ? "line-through text-gray-500" : ""
-                  }`}
-                >
+                <p className={`w-4/5 break-words min-w-0 ${todo.isCompleted ? "line-through text-gray-500" : ""}`}>
                   {todo.text}
                 </p>
                 <div className="flex flex-row gap-2 flex-shrink-0 min-w-fit">
                   <img
-                    src="./src/assets/delete.svg"
+                    src={deleteIcon}
                     alt="delete"
                     className="w-10 h-10 cursor-pointer"
                     data-id={todo.id}
                     onClick={handleDelete}
                   />
                   <img
-                    src="./src/assets/edit.svg"
+                    src={editIcon}
                     alt="edit"
                     className="w-10 h-10 cursor-pointer"
                     data-id={todo.id}
